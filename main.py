@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, render_template, session, make_respon
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user, fresh_login_required
 import os
 from flask_cors import CORS
+from sqlalchemy import create_engine
 
 # https 에서만 지원하는 기능을 http 에서 테스트하기 위해서 설정하는 플래그
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
@@ -30,3 +31,4 @@ def unauthoried():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port="8080")
+    engine = create_engine("mysql+pymysql://root:@localhost:3306/blog_db", echo=True)
