@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+  <meta name="generator" content="Jekyll v4.1.1" />
+  <title>잔재미코딩</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/" />
+
+  <!-- Bootstrap core CSS -->
+  <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet" />
+  <link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet" type="text/css" />
+
+  <!-- Custom styles for this template -->
+  <link href="/static/blog.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-4 pt-1">
+            <a class="text-muted" href="#">잔재미코딩</a>
+          </div>
+          <div class="col-4 text-center"></div>
+          <div class="col-4 d-flex justify-content-end align-items-center"></div>
+        </div>
+      </header>
+
+      <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-10 px-0">
+          <h2 class="display-4 mb-4">
+            <b>내가 풀스택으로 월급 두 배 번 이야기</b>
+          </h2>
+          <p class="lead my-3">
+
+          </p>
+          <p class="lead mb-2">
+            {% if user_email != null %} 
+            {{ user_email }} 이메일 주소로 구독중입니다.&nbsp;
+            <a class="btn btn-light" href="/blog/logout" role="button">구독취소</a>
+            {% else %}
+            이메일을 남겨주시면, 블로그 연재시 메일로 송부드립니다 &nbsp;
+            <form action="/blog/set_email" method="post">
+              <div class="form-row">
+                <div class="col">
+                  <input type="email" class="form-control" name="user_email">
+                  <input type="hidden" name="blog_id" value="B">
+                </div>
+                <div class="col">
+                  <button type="submit" class="btn btn-primary">구독</button>
+                </div>
+              </div>
+            </form>
+          {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8 blog-main">
+          <div class="blog-post">
+            <h2>풀스택 개발자란?</h2>
+            <p>
+              풀스택 개발자란 백엔드, 프론트엔드, 그리고 배포(+DevOps) 기술을 혼자서도 모두 다룰 수 있는 개발자를 말한다.
+              어이쿠 굉장히 힘들겠네? 아마 IT를 웹부터 익히려는 입문자라면 누구나 이렇게 느낄꺼다. 이미 풀스택 클론코딩을 들어본 사람이라면, 조금 익숙할 수도 있다.
+              정말 어렵나? 어렵지! 근데 재밌다. 기술을 익히는 일이 즐거운 사람이라면, 세상에 내가 모르는 IT 기술은 존재할 수가 없다.
+            </p>
+            <br>
+            <h3>나는 풀스택이 하찮았다</h3>
+            <p>
+              상당히 거만한 말이지만, 그랬다. 시스템 소프트웨어 개발자는 그래도 나름 부심이 있다. 이렇게 어려운 걸 하는데, 웹 정도야 뭐. 금방 하지.
+              레고맞추기 같은 느낌이 싫어서일 뿐이지. 그래 사실 나도 그랬다. 복잡하고 한땀한땀 써야 하는 C 언어로 완벽히 이해하기 어려운 시스템에 들어가 구조를 만들고, 시스템을 만드는 일이 바로
+              개발자지.
+              그런 부심을 가진 채, 어느 날 홈페이지를 만들어야겠다는 생각을 가지고 최신 기술을 익혀보기 시작했다. 한달이면 되겠지 했지만, 6개월이 지나도 뭐하나 제대로 익히지 못했다. 윽... 만만한
+              일이 아니네~
+            </p>
+            <br>
+            <h3>첫번째 풀스택 시도가 실패한 이유1: 기본이 안됬다!</h3>
+            <p>
+              웹에서는 프레임워크가 많았다. 프레임워크를 익히려면 또다른 기술을 활용할 수 있어야 했고, 그 기술을 익히려면 또다른 기술을 익혀야 했다.
+              끝도 없었다. 이게 세네가지가 조합되면 난장판이 되었다. 대충 수정해보면 되겠지. 하나를 수정하면 다른 기술이 안되고, 서로 얽키고 섥켰다.
+              그래도 자존심이 있지. 포기는 없었다. 억지로 만들었다. 그러나 제대로 기술을 모르니, 뭔가 기능이 어색했다. 결국 상용화할 수 없었다. 완전 실패였다.
+              기본적인 기술에 익숙하지 않다보니, 알듯 말듯한 기술로는 무리가 있었다.
+              윽 내 6개월~~~
+            </p>
+            <br>
+            <h3>첫번째 풀스택 시도가 실패한 이유2: 기술을 잘 선택해야 한다</h3>
+            <p>
+              웹은 항상 매년 유명한 기술이 있다. 그래서 나도 처음에는 유명한 기술을 택했다. 어떤 원칙도 없이 남들이 하니까 나도 선택을 한셈이다.
+              그런데, 유명한 기술이 나를 생각해줄리는 만무했다. 이 기술을 익힐라면 다른 기술을 익혀야 하고, 다른 기술을 익힐라면 또다른 기술을 익혀야 하고, 대체 왜 이 기술을 익혀야 하는걸까?
+              더 충격적인 일은 유명한 기술이 다음 해에 바로 다른 유명한 기술로 바꼈다라는 점이다. 뭐야 이거! 아 기술을 잘 선택해야 하는구나!
+            </p>
+            <br>
+            <h3>기술을 선택하는 기준</h3>
+            <ul>
+              <li> 최신 기술이어야 한다. 그래야 정보가 많다.</li>
+              <li> 무조건 쉬워야 한다. 쉽게 구현을 할 수 있어야, 구현하면서 엮여있는 기본 기술을 익힐 수 있다</li>
+            </ul>
+            <br>
+
+            <h3>내가 선택한 기술</h3>
+            <p>
+              내 궁극적인 목표는 원하는 아이디어가 있다면, 바로 짧은 시간에 웹이든 앱이든 구현할 수 있는 기술셋이다.
+              그러려면 구현에 시간이 오래 걸리지 않아야 한다. 그리고 아이디어가 무엇일지 모르니 자유도가 높아야 한다.
+              꽉 막힌 프레임워크는 무조건 탈락이다. 그리고 복잡해서 만들라면 개발자 몇 명은 있어야 하는 기술은 탈락이다.
+              <b>무엇보다 스피드가 가장 중요하다. 하나 만드는데 6개월이 걸리면 안된다! 도전적이지만, 기술은 언제나 솔루션이 있다.</b>
+            </p>
+            <p style="color:blue">
+              다음 블로그글에서 더 설명합니다~~~
+            </p>
+          </div>
+        </div>
+        <!-- /.blog-main -->
+
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-4 mb-3 bg-light rounded">
+            <h4>About</h4>
+            <p class="mb-0">
+              Dave Lee 라는 닉네임으로 활동하고 있는 현직 기획자 겸 개발자입니다. 서비스를 직접 만들고, IT 강의도 진행하며, 활동하고 있습니다.
+              <a href="https://www.fun-coding.org">잔재미코딩 (www.fun-coding.org)</a> 블로그 사이트도 운영 중입니다.
+            </p>
+          </div>
+
+          <div class="p-4">
+            <h4>SNS 채널</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">유투브</a></li>
+            </ol>
+          </div>
+        </aside>
+        <!-- /.blog-sidebar -->
+      </div>
+      <!-- /.row -->
+    </main>
+    <!-- /.container -->
+</body>
+</html>
