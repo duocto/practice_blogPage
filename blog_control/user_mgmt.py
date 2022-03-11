@@ -46,5 +46,3 @@ class User(Base, UserMixin):
     @staticmethod
     def delete(user_id):
         pass
-
-    def save_session_info():
