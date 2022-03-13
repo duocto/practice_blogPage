@@ -1,16 +1,25 @@
-# user 를 객체로 정의
-from flask_login import UserMixin
+from flask_login import UserMixin, user_accessed
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+import pymysql
+
+
 
 Base = declarative_base()
+
+engine = create_engine("mysql+pymysql://root:fpdlels2@localhost:3306/blog_db", echo=True)
+Session = sessionmaker()
+Session.configure(bind=engine)
+session = Session()
 
 
 class User(Base, UserMixin):
     __tablename__ = 'users'
 
     # user 를 정의하기 위한 column
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String)
     email = Column(String)
 
@@ -19,8 +28,9 @@ class User(Base, UserMixin):
     pageName = Column(String)
     access_time = Column(DateTime)
 
-    def __init__(self, id, name, email):
+    def __init__(self, id, pageName, name, email):
         self.id = id
+        self.pageName = pageName
         self.name = name
         self.email = email
 
@@ -30,19 +40,31 @@ class User(Base, UserMixin):
     # db 에서 user id 를 통해서 user 찾기
     @staticmethod
     def get(user_id):
-        pass
+        find_user = session.query(User).filter( User.id == user_id )
+        return find_user.one_or_none()
 
     # db 에서 user email 를 통해서 user 찾기
     @staticmethod
     def find(user_email):
-        pass
+        find_user = session.query(User).filter( User.email == user_email )
+        return find_user.one_or_none()
 
-    # db 에 새로운 user 를 생성
+    # 구독 등록한 user 의 blog 이름과 email 을 등록
     @staticmethod
     def create(user_email, blog_id):
-        pass
+        user = User.find( user_email )
+        if user is None:
+            new_user = User( id=None, pageName=blog_id, name="practice", email=user_email)
+            session.add( new_user )
+            session.commit()
+            user = User.find( user_email )
+        
+        return user
+        
 
     # db 에서 user 를 제거
     @staticmethod
     def delete(user_id):
-        pass
+        session.query(User).filter( User.id== user_id ).delete()
+        session.commit()
+        
