@@ -9,7 +9,7 @@ import pymysql
 
 Base = declarative_base()
 
-engine = create_engine("mysql+pymysql://root:fpdlels2@localhost:3306/blog_db", echo=True)
+engine = create_engine("mysql+pymysql://root:password@localhost:3306/blog_db", echo=True)
 Session = sessionmaker()
 Session.configure(bind=engine)
 session = Session()
